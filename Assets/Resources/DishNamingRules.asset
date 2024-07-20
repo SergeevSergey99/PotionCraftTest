@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141fceffc27a4520a1cc770fb4d41c09, type: 3}
+  m_Name: DishNamingRules
+  m_EditorClassIdentifier: 
+  rules:
+  - ingredientType: {fileID: 11400000, guid: 5384f9054e1653640bbcb40a49af8e4c, type: 2}
+    minCount: 5
+    maxCount: 5
+    dish: {fileID: 11400000, guid: 5dc302c175fc8264682712cc1ad504a8, type: 2}
+  - ingredientType: {fileID: 11400000, guid: 5384f9054e1653640bbcb40a49af8e4c, type: 2}
+    minCount: 4
+    maxCount: 4
+    dish: {fileID: 11400000, guid: 1b32b0ebdf0be3e41af8ac3fa6909634, type: 2}
+  - ingredientType: {fileID: 11400000, guid: 5384f9054e1653640bbcb40a49af8e4c, type: 2}
+    minCount: 2
+    maxCount: 3
+    dish: {fileID: 11400000, guid: 3c6dc303426ab934a848d66286574c22, type: 2}
+  - ingredientType: {fileID: 11400000, guid: d9330aeff9ccbb8429de2b78f369ddab, type: 2}
+    minCount: 4
+    maxCount: 5
+    dish: {fileID: 11400000, guid: 47e38ae94d5964a488683fad2704e3b8, type: 2}
+  - ingredientType: {fileID: 11400000, guid: 5e55ef70855b2894c99be437f50f6c89, type: 2}
+    minCount: 4
+    maxCount: 5
+    dish: {fileID: 11400000, guid: 1f115da8e6338c9448ef26009e1b5479, type: 2}
+  - ingredientType: {fileID: 11400000, guid: 5384f9054e1653640bbcb40a49af8e4c, type: 2}
+    minCount: 0
+    maxCount: 0
+    dish: {fileID: 11400000, guid: 858ba91983b92314baa1f7ececd8995b, type: 2}
+  defaultDish: {fileID: 11400000, guid: 7d388ac30d3c5224191baca5c071e0ed, type: 2}
