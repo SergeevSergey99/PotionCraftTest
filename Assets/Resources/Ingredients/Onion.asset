@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Onion
   m_EditorClassIdentifier: 
   _name: "\u041B\u0443\u043A"
-  _icon: {fileID: 8545868988244086034, guid: 6c5d03a22b280f24fa1c676ad57bc303, type: 3}
+  _prefab: {fileID: 6262603937144243970, guid: 7122899552fb5c84e9c6427b13b99d53, type: 3}
   score: 40

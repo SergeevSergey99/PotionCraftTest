@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Papper
   m_EditorClassIdentifier: 
   _name: "\u0411\u043E\u043B\u0433\u0430\u0440\u0441\u043A\u0438\u0439 \u043F\u0435\u0440\u0435\u0446"
-  _icon: {fileID: 8313322549316331437, guid: b6a79755b6de1f4459f346ed2ce6e081, type: 3}
+  _prefab: {fileID: 4124222371553224832, guid: bdfad64bf80491b4aadf58f31a087f67, type: 3}
   score: 30

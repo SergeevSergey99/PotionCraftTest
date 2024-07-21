@@ -8,6 +8,17 @@ public class PlayerData : MonoSingleton<PlayerData>
     private int _score;
     private DishLog _lastDishLog;
     private DishLog _bestDishLog;
+    
+    private IngredientSO[] _allIngredients = null;
+    public IngredientSO[] AllIngredients
+    {
+        get
+        {
+            if (_allIngredients == null)
+                _allIngredients = Resources.LoadAll<IngredientSO>("Ingredients");
+            return _allIngredients;
+        }
+    }
 
 #region events
     public delegate void ScoreChanged(int value);
@@ -95,14 +106,13 @@ public class PlayerData : MonoSingleton<PlayerData>
     {
         Score = PlayerPrefs.GetInt(SCORE_KEY, 0);
         
-        var allIngredients = Resources.LoadAll<IngredientSO>("Ingredients");
         var lastDishIngredients = PlayerPrefs.GetString(LAST_DISH_KEY, "");
         var bestDishIngredients = PlayerPrefs.GetString(BEST_DISH_KEY, "");
         
         LastDish = string.IsNullOrWhiteSpace(lastDishIngredients) ? null 
-            : new DishLog(lastDishIngredients.Split("&&").Select(ingredientName => allIngredients.First(ingredient => ingredient.name == ingredientName)).ToList());
+            : new DishLog(lastDishIngredients.Split("&&").Select(ingredientName => AllIngredients.First(ingredient => ingredient.name == ingredientName)).ToList());
         BestDish = string.IsNullOrWhiteSpace(bestDishIngredients) ? null 
-            : new DishLog(bestDishIngredients.Split("&&").Select(ingredientName => allIngredients.First(ingredient => ingredient.name == ingredientName)).ToList());
+            : new DishLog(bestDishIngredients.Split("&&").Select(ingredientName => AllIngredients.First(ingredient => ingredient.name == ingredientName)).ToList());
     }
     
 }

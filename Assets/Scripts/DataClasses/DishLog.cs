@@ -3,12 +3,25 @@ using Scriptable;
 
 public class DishLog
 {
-    public DishSO Dish;
-    public List<IngredientSO> Ingredients = new();
-    public float Score;
+    public readonly DishSO Dish;
+    public readonly List<IngredientSO> Ingredients = new();
+    public readonly float Score;
     
     private Dictionary<IngredientSO, int> ingredientCount = new();
-    
+
+    public DishLog(Dictionary<IngredientSO, int> ingredients)
+    {
+        ingredientCount = new(ingredients);
+        foreach (var pair in ingredients)
+        {
+            for (int i = 0; i < pair.Value; i++)
+            {
+                Ingredients.Add(pair.Key);
+            }
+        }
+        Dish = DishNamingRulesSO.GetDish(ingredientCount);
+        Score = ComboRulesSO.GetComboScore(ingredientCount);
+    }
     public DishLog(List<IngredientSO> ingredients)
     {
         Ingredients = ingredients;
@@ -24,8 +37,7 @@ public class DishLog
                 ingredientCount[ingredient] = 1;
             }
         }
-        Dish = DishNamingRulesSO.GetDish(Ingredients);
-        
+        Dish = DishNamingRulesSO.GetDish(ingredientCount);
         Score = ComboRulesSO.GetComboScore(ingredientCount);
     }
     

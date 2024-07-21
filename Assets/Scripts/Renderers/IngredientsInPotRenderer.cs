@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using SceneObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +9,8 @@ namespace Renderers
     {
         [SerializeField] private Transform _ingredientsContainer;
         [SerializeField] private List<Image> _ingredientImages;
-
         [SerializeField] private Sprite _defaultSprite;
+        
         private void OnEnable()
         {
             Pot.OnIngredientsChanged += RenderIngredients;

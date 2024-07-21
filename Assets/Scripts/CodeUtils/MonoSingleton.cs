@@ -6,7 +6,7 @@ namespace CodeUtils
     {
         protected static T _instance = null;
         public static bool IsInstanceExist => _instance != null;
-        private static bool isSelfCreating = false;
+        private static bool _isSelfCreating = false;
         public static T Instance {
             get
             {
@@ -15,10 +15,10 @@ namespace CodeUtils
                     _instance = FindObjectOfType<T>();
                     if (_instance == null)
                     {
-                        isSelfCreating = true;
+                        _isSelfCreating = true;
                         var go = new GameObject(typeof(T).Name);
                         _instance = go.AddComponent<T>();
-                        isSelfCreating = false;
+                        _isSelfCreating = false;
                     }
 
                     _instance.Init();
@@ -36,7 +36,7 @@ namespace CodeUtils
 
         public virtual void Awake()
         {
-            if (!isSelfCreating)
+            if (!_isSelfCreating)
             {
                 if (_instance == null)
                 {

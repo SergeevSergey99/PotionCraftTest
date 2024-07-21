@@ -2,6 +2,7 @@
 using CodeUtils;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Scriptable
 {
@@ -17,14 +18,16 @@ namespace Scriptable
             public DishSO dish;
         }
         
-        [SerializeField] private List<Rule> rules;
-        [SerializeField] private DishSO defaultDish;
+        [SerializeField] private List<Rule> _rules;
+        [SerializeField] private DishSO _defaultDish;
         
-        public static DishSO GetDish(List<IngredientSO> ingredients)
+        public static DishSO GetDish(Dictionary<IngredientSO, int> ingredients)
         {
-            foreach (var rule in Instance.rules)
+            foreach (var rule in Instance._rules)
             {
-                int count = ingredients.FindAll(ingredient => ingredient == rule.ingredientType).Count;
+                int count = 0;
+                if (ingredients.TryGetValue(rule.ingredientType, out var value))
+                    count = value;
 
                 if (count >= rule.minCount && count <= rule.maxCount)
                 {
@@ -32,7 +35,7 @@ namespace Scriptable
                 }
             }
 
-            return Instance.defaultDish;
+            return Instance._defaultDish;
         }
         
     }

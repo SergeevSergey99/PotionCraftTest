@@ -1,5 +1,4 @@
-﻿
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace Renderers

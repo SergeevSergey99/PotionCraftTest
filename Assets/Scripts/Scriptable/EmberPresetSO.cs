@@ -7,10 +7,10 @@ namespace Scriptable
     [CreateAssetMenu(fileName = "EmberPreset", menuName = "Scriptable/EmberPreset")]
     public class EmberPresetSO : ScriptableObject
     {
-        [SerializeField] private float animationDuration;
-        [SerializeField] private AnimationCurve brightnessCurve;
+        [SerializeField] private float _animationDuration;
+        [SerializeField] private AnimationCurve _brightnessCurve;
         
-        public float AnimationDuration => animationDuration;
-        public AnimationCurve BrightnessCurve => brightnessCurve;
+        public float AnimationDuration => _animationDuration;
+        public AnimationCurve BrightnessCurve => _brightnessCurve;
     }
 }

@@ -2,12 +2,13 @@
 using System;
 using SceneObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class IngredientInteractionManager : MonoBehaviour
 {
-    [SerializeField] private float interactionRadius = 0.3f;
-    [SerializeField] private LayerMask ingredientLayer;
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] private float _interactionRadius = 0.3f;
+    [SerializeField] private LayerMask _ingredientLayer;
+    [SerializeField] private Camera _mainCamera;
 
     private Ingredient _currentIngredient = null;
 
@@ -34,7 +35,7 @@ public class IngredientInteractionManager : MonoBehaviour
 
     private Ingredient GetIngredientAtPosition(Vector2 position)
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, interactionRadius, ingredientLayer);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, _interactionRadius, _ingredientLayer);
         
         if (colliders.Length > 0)
         {
@@ -83,20 +84,20 @@ public class IngredientInteractionManager : MonoBehaviour
 
     private Vector2 GetMouseWorldPosition()
     {
-        return mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        return _mainCamera.ScreenToWorldPoint(Input.mousePosition);
     }
 
     private void OnValidate()
     {
-        if (mainCamera == null)
+        if (_mainCamera == null)
         {
-            mainCamera = Camera.main;
+            _mainCamera = Camera.main;
         }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(GetMouseWorldPosition(), interactionRadius);
+        Gizmos.DrawWireSphere(GetMouseWorldPosition(), _interactionRadius);
     }
 }

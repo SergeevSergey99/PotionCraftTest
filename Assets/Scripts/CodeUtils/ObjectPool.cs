@@ -7,13 +7,13 @@ namespace CodeUtils
     public abstract class ObjectPool<T> : MonoSingleton<ObjectPool<T>> where T : Component
     {
         [SerializeField] private T _prefab;
-        [SerializeField] private int _poolSize = 10;
+        [SerializeField] private int _initialPoolSize = 10;
 
         private Queue<T> _pool = new Queue<T>();
 
         protected override void Init()
         {
-            for (int i = 0; i < _poolSize; i++)
+            for (int i = 0; i < _initialPoolSize; i++)
             {
                 CreateNewObject();
             }
@@ -31,7 +31,7 @@ namespace CodeUtils
         {
             if (Instance._pool.Count == 0)
             {
-                return null;
+                Instance.CreateNewObject();
             }
 
             T obj = Instance._pool.Dequeue();
