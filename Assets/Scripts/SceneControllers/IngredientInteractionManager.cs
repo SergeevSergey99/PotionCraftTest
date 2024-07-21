@@ -11,6 +11,7 @@ public class IngredientInteractionManager : MonoBehaviour
     [SerializeField] private LayerMask _ingredientLayer;
     [SerializeField] private LayerMask _ingredientContainerLayer;
     [SerializeField] private Camera _mainCamera;
+    [SerializeField] private float _hoverUpdateRate = 0.1f;
 
     private Ingredient _currentIngredient = null;
     private Ingredient _hoveredIngredient = null;
@@ -22,12 +23,15 @@ public class IngredientInteractionManager : MonoBehaviour
 
     IEnumerator CheckHoveredIngredient()
     {
+        // It is also possible to use extra collider to detect hovered ingredient
+        // But it is not possible to detect closest ingredient this way
+        // So I decided to use this method
         while (true)
         {
             if (_currentIngredient == null)
             {
                 Vector2 mousePosition = GetMouseWorldPosition();
-                Ingredient ingredient = GetIngredientAtPosition(mousePosition);
+                Ingredient ingredient = GetClosestComponentAtPosition<Ingredient>(mousePosition, _ingredientLayer);
                 if (ingredient != _hoveredIngredient)
                 {
                     _hoveredIngredient?.CursorExit();
@@ -38,7 +42,7 @@ public class IngredientInteractionManager : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(_hoverUpdateRate);
         }
     }
     private void Update()
@@ -55,12 +59,12 @@ public class IngredientInteractionManager : MonoBehaviour
             {
                 Vector2 mousePosition = GetMouseWorldPosition();
                 // Try to get the ingredient at the mouse position
-                _currentIngredient = GetIngredientAtPosition(mousePosition);
+                _currentIngredient = GetClosestComponentAtPosition<Ingredient>(mousePosition, _ingredientLayer);
 
                 if (_currentIngredient == null)
                 {
                     // Otherwise, try to get the ingredient from a container
-                    _currentIngredient = GetIngredientFromContainerAtPosition(mousePosition);
+                    _currentIngredient = GetClosestComponentAtPosition<IngredientContainer>(mousePosition, _ingredientContainerLayer)?.SpawnIngredient();
                 }
 
             }
@@ -79,62 +83,33 @@ public class IngredientInteractionManager : MonoBehaviour
     }
 
     
-    private Ingredient GetIngredientAtPosition(Vector2 position)
+    private T GetClosestComponentAtPosition<T>(Vector2 position, LayerMask layerMask) where T : MonoBehaviour
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, _interactionRadius, _ingredientLayer);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, _interactionRadius, layerMask);
         
         if (colliders.Length > 0)
         {
-            // Search for the closest ingredient
-            Ingredient closestIngredient = null;
+            // Search for the closest component
+            T closestComponent = null;
             float closestDistance = float.MaxValue;
 
-            foreach (var collider in colliders)
+            for (int i = 0; i < colliders.Length; i++)
             {
-                Ingredient ingredient = collider.GetComponent<Ingredient>();
-                if (ingredient != null)
+                T component = colliders[i].GetComponent<T>();
+                if (component != null)
                 {
-                    float distance = Vector2.Distance(position, ingredient.transform.position);
+                    float distance = Vector2.Distance(position, component.transform.position);
                     if (distance < closestDistance)
                     {
-                        closestIngredient = ingredient;
+                        closestComponent = component;
                         closestDistance = distance;
                     }
                 }
             }
 
-            return closestIngredient;
+            return closestComponent;
         }
 
-        return null;
-    }
-    private Ingredient GetIngredientFromContainerAtPosition(Vector2 position)
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, _interactionRadius, _ingredientContainerLayer);
-        
-        if (colliders.Length > 0)
-        {
-            // Search for the closest container
-            IngredientContainer closestContainer = null;
-            float closestDistance = float.MaxValue;
-
-            foreach (var collider in colliders)
-            {
-                IngredientContainer container = collider.GetComponent<IngredientContainer>();
-                if (container != null)
-                {
-                    float distance = Vector2.Distance(position, container.transform.position);
-                    if (distance < closestDistance)
-                    {
-                        closestContainer = container;
-                        closestDistance = distance;
-                    }
-                }
-            }
-
-            if (closestContainer != null)
-                return closestContainer.SpawnIngredient();
-        }
         return null;
     }
 

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEditor;
 
 namespace Scriptable
 {
@@ -8,11 +8,21 @@ namespace Scriptable
     {
         [SerializeField] private string _name;
         [SerializeField] private IngredientPrefab _prefab;
-        [SerializeField] private int score;
+        [SerializeField] private int _score;
         
         public string Name => _name;
         public Sprite Icon => _prefab.SpriteRenderer.sprite;
         public Vector2[] Points => _prefab.PolygonCollider.points;
-        public int Score => score;
+        public int Score => _score;
+
+#if UNITY_EDITOR
+        public void SetNewData(string newName, int newScore)
+        {
+            _name = newName;
+            _score = newScore;
+            //Save changes
+            EditorUtility.SetDirty(this);
+        }
+#endif
     }
 }

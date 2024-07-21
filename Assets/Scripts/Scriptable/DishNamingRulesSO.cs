@@ -23,16 +23,14 @@ namespace Scriptable
         
         public static DishSO GetDish(Dictionary<IngredientSO, int> ingredients)
         {
-            foreach (var rule in Instance._rules)
+            for (int i = 0; i < Instance._rules.Count; i++)
             {
                 int count = 0;
-                if (ingredients.TryGetValue(rule.ingredientType, out var value))
+                if (ingredients.TryGetValue(Instance._rules[i].ingredientType, out var value))
                     count = value;
 
-                if (count >= rule.minCount && count <= rule.maxCount)
-                {
-                    return rule.dish;
-                }
+                if (count >= Instance._rules[i].minCount && count <= Instance._rules[i].maxCount)
+                    return Instance._rules[i].dish;
             }
 
             return Instance._defaultDish;

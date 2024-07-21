@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\u041B\u0443\u043A"
   _prefab: {fileID: 6262603937144243970, guid: 7122899552fb5c84e9c6427b13b99d53, type: 3}
-  score: 40
+  _score: 40

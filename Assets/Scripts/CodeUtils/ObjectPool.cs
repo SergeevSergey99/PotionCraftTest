@@ -47,9 +47,9 @@ namespace CodeUtils
 
         public static void ReturnAllObjects()
         {
-            foreach (Transform obj in Instance.transform)
+            foreach (Transform child in Instance.transform)
             {
-                if (obj.TryGetComponent<T>(out var component))
+                if (child.TryGetComponent<T>(out var component))
                 {
                     ReturnObject(component);
                 }

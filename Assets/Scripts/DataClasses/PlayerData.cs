@@ -20,15 +20,15 @@ public class PlayerData : MonoSingleton<PlayerData>
         }
     }
 
-#region events
+    #region events
     public delegate void ScoreChanged(int value);
     public static event ScoreChanged OnScoreChanged;
     
     public delegate void DishLogChanged(DishLog value);
     public static event DishLogChanged OnLastDishLogChanged;
     public static event DishLogChanged OnBestDishLogChanged;
-#endregion
-#region getters and setters
+    #endregion
+    #region getters and setters
     public static int Score
     {
         get => Instance._score; 
@@ -68,8 +68,6 @@ public class PlayerData : MonoSingleton<PlayerData>
             OnBestDishLogChanged?.Invoke(value);
         }
     }
-
-
     #endregion
     
     private const string SCORE_KEY = "Score";

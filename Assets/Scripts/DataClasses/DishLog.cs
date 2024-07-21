@@ -26,15 +26,15 @@ public class DishLog
     {
         Ingredients = ingredients;
         ingredientCount = new();
-        foreach (var ingredient in Ingredients)
+        for (int i = 0; i < ingredients.Count; i++)
         {
-            if (ingredientCount.ContainsKey(ingredient))
+            if (ingredientCount.ContainsKey(ingredients[i]))
             {
-                ingredientCount[ingredient]++;
+                ingredientCount[ingredients[i]]++;
             }
             else
             {
-                ingredientCount[ingredient] = 1;
+                ingredientCount[ingredients[i]] = 1;
             }
         }
         Dish = DishNamingRulesSO.GetDish(ingredientCount);

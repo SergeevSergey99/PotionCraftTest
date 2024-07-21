@@ -14,11 +14,10 @@ namespace Scriptable
         
         private void OnValidate()
         {
-            if (_spriteRenderer == null || _polygonCollider == null)
-            {
+            if (_spriteRenderer == null)
                 _spriteRenderer = GetComponent<SpriteRenderer>();
+            if (_polygonCollider == null)
                 _polygonCollider = GetComponent<PolygonCollider2D>();
-            }
         }
     }
 }

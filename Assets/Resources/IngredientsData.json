@@ -1,0 +1,29 @@
+{
+    "ingredients": [
+      {
+        "type": "Meat",
+        "score": 50,
+        "name": "Мясо"
+      },
+      {
+        "type": "Onion",
+        "score": 40,
+        "name": "Лук"
+      },
+      {
+        "type": "Pepper",
+        "score": 30,
+        "name": "Болгарский перец"
+      },
+      {
+        "type": "Carrot",
+        "score": 20,
+        "name": "Морковь"
+      },
+      {
+        "type": "Potato",
+        "score": 10,
+        "name": "Картофель"
+      }
+    ]
+  }

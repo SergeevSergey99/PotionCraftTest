@@ -22,6 +22,8 @@ namespace Scriptable
         {
             float score = 0;
             bool allDifferent = true;
+            
+            // Calculate score
             foreach (var pair in ingredientCount)
             {
                 float ingredientScore = pair.Key.Score * pair.Value;
@@ -30,11 +32,12 @@ namespace Scriptable
                 {
                     allDifferent = false;
                     
-                    foreach (var rule in Instance.rules)
+                    // Check for combo rules
+                    for (int i = 0; i < Instance.rules.Count; i++)
                     {
-                        if (pair.Value == rule.sameIngredientCount)
+                        if (pair.Value == Instance.rules[i].sameIngredientCount)
                         {
-                            ingredientScore *= rule.multiplier;
+                            ingredientScore *= Instance.rules[i].multiplier;
                             break;
                         }
                     }

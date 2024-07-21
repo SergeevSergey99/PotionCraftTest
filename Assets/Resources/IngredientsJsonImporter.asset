@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11eb5ef4b2040629b5a629c481730c3, type: 3}
+  m_Name: IngredientsJsonImporter
+  m_EditorClassIdentifier: 
+  _json: {fileID: 4900000, guid: f65b2f617196ebf40aafe258dc64849c, type: 3}
+  _ingredientsSO:
+  - {fileID: 11400000, guid: 288289ae2b6aba5468a79f59c6e16fd9, type: 2}
+  - {fileID: 11400000, guid: 5e55ef70855b2894c99be437f50f6c89, type: 2}
+  - {fileID: 11400000, guid: d9330aeff9ccbb8429de2b78f369ddab, type: 2}
+  - {fileID: 11400000, guid: 5384f9054e1653640bbcb40a49af8e4c, type: 2}
+  - {fileID: 11400000, guid: 16acc403f7345df4fa2a558d76f78145, type: 2}
