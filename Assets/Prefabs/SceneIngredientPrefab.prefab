@@ -99,9 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70050545c0e74eaa9542a98e055f3a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 8321699257573211764}
   _collider: {fileID: 3809446077016782385}
   _rigidbody: {fileID: 8503982785854732758}
   _dragSpeed: 10
+  _rotationSpeedRange: 100
+  _hoverMaterial: {fileID: 2100000, guid: 0309822c3a5afa9409b99ab3f621ff72, type: 2}
 --- !u!50 &8503982785854732758
 Rigidbody2D:
   serializedVersion: 4
