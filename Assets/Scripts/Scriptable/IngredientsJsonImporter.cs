@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Unity.Plastic.Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEditor;
+
+#if UNITY_EDITOR
+using Unity.Plastic.Newtonsoft.Json.Linq;
+#endif
 
 namespace Scriptable
 {
